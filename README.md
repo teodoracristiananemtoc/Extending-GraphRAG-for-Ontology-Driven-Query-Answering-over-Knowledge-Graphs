@@ -7,32 +7,17 @@ Structural Queries – focusing on explicit ABox/TBox graph exploration (e.g., i
 Reasoning-Oriented Queries – requiring ontology-aware inference such as subclass propagation, domain/range constraints, subproperty inheritance, and combined ABox–TBox reasoning
 For both structural and reasoning-oriented categories, we include SELECT-based retrieval and ASK-based validation, enabling a comprehensive assessment of our customized Graph RAG framework
 
- Standard SELECT Query Taxonomy
+## Standard SELECT Query Taxonomy
 
-ID	Query Name	Description	SPARQL Pattern
-1	Outgoing Predicate Instantiation	Retrieving  all  objects
-linked from a given subject via a specified predicate	SELECT ?object WHERE { @node @predicate
-?object. }
-2	Incoming Predicate Instantiation	Retrieving all subjects con-
-nected to a specified object via a given predicate	SELECT ?subject WHERE { ?subject @predicate
-@node. }
-3	Undirected Predicate Instantiation	Retrieving all triples where
-a given predicate connects a specified entity as subject or object	SELECT ?ent WHERE { { @node @relationship
-?ent. } UNION { ?ent @relationship @node.
-} }
-4	Direct Entity-to-Entity Relation Retrieval	Retrieving predicates that
-directly connect two speci- fied entities	SELECT ?predicate WHERE { { @node1
-?predicate @node2. } UNION { @node2
-?predicate @node1. } }
-5	Subject-Centric Statement Retrieval	Retrieving all triples where
-a specified entity appears as subject	SELECT ?predicate ?target WHERE { @node
-?predicate ?target.  }
-6	Predicate-Centric Connectivity Retrieval	Retrieving all entity pairs
-connected by a specified predicate, regardless of di- rection	SELECT ?source ?target WHERE { { ?source
-@predicate ?target. } UNION { ?target @predicate ?source. } }
-7	Full Entity Description	Retrieving all triples where
-the entity appears as sub- ject or object	DESCRIBE @x
-
+| Query ID | Query Name | Description | SPARQL Pattern |
+|----------|------------|------------|----------------|
+| 1 | Outgoing Predicate Instantiation | Retrieving all objects linked from a given subject via a specified predicate | `SELECT ?object WHERE { @node @predicate ?object.}` |
+| 2 | Incoming Predicate Instantiation | Retrieving all subjects connected to a specified object via a given predicate | `SELECT ?subject WHERE { ?subject @predicate @node. }` |
+| 3 | Undirected Predicate Instantiation | Retrieving all triples where a given predicate connects a specified entity as subject or object | `SELECT ?ent WHERE {{ @node @relationship ?ent.} UNION { ?ent @relationship @node. }}` |
+| 4 | Direct Entity-to-Entity Relation Retrieval | Retrieving predicates that directly connect two specified entities | `SELECT ?predicate WHERE {{ @node1 ?predicate @node2. } UNION { @node2 ?predicate @node1. }}` |
+| 5 | Subject-Centric Statement Retrieval | Retrieving all triples where a specified entity appears as subject | `SELECT ?predicate ?target WHERE { @node ?predicate ?target. }` |
+| 6 | Predicate-Centric Connectivity Retrieval | Retrieving all entity pairs connected by a specified predicate, regardless of direction | `SELECT ?source ?target WHERE {{ ?source @predicate ?target.} UNION { ?target @predicate @source. }}` |
+| 7 | Full Entity Description | Retrieving all triples where the entity appears as subject or object | `DESCRIBE @x` |
 Standard ASK Query Taxonomy
 
 ID	Query Name	Description	SPARQL Pattern
